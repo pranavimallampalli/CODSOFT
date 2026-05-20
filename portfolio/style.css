@@ -344,21 +344,60 @@ footer {
 }
 
 /* media queries */
-
 @media (max-width: 768px) {
-  .hero {
+
+  .navbar {
     flex-direction: column;
+    padding: 20px;
     text-align: center;
-    gap: 40px;
   }
 
   .navbar ul {
     flex-wrap: wrap;
-    gap: 20px;
     justify-content: center;
+    gap: 15px;
+    margin-top: 15px;
+  }
+
+  .hero {
+    flex-direction: column;
+    text-align: center;
+    padding: 40px 8%;
+    gap: 40px;
+  }
+
+  .info h1 {
+    font-size: 2.5rem;
+  }
+
+  .info h3 {
+    font-size: 1.2rem;
+  }
+
+  .info p {
+    font-size: 1rem;
+  }
+
+  .image img {
+    width: 220px;
   }
 
   .project-card {
-    width: 90%;
+    width: 100%;
+  }
+
+  .resume-box,
+  .contact-box,
+  .about-content {
+    width: 100%;
+    padding: 25px;
+  }
+
+  .skills-container {
+    gap: 15px;
+  }
+
+  .skill-box {
+    width: 100%;
   }
 }
