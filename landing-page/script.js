@@ -15,7 +15,6 @@ if (orderBtn && popup && closePopup) {
   });
 }
 
-
 const themeBtn = document.querySelector(".theme-btn");
 
 
