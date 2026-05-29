@@ -20,7 +20,6 @@ orderBtn?.addEventListener("click", openPopup);
 closePopup?.addEventListener("click", closePopupHandler);
 
 // DARK MODE
-
 // Load saved theme on page refresh
 if (localStorage.getItem("theme") === "dark") {
   document.body.classList.add("dark-mode");
