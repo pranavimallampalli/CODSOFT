@@ -13,7 +13,13 @@ body {
   font-family: "Lora", serif;
   color: #3e2c23;
   background-color: #f1e4d6;
-  transition: background-color 0.5s ease, color 0.5s ease;
+  transition:
+    background-color 0.5s ease,
+    color 0.5s ease;
+}
+
+section {
+  scroll-margin-top: 90px;
 }
 
 hr {
@@ -23,7 +29,8 @@ hr {
   width: 90%;
   margin: 13px auto;
 }
-/* layout */
+
+/* LAYOUT */
 
 .container {
   width: 90%;
@@ -36,6 +43,8 @@ hr {
 .navbar {
   background: rgba(75, 53, 44, 0.92);
   backdrop-filter: blur(5px);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+  
   padding: 14px 0;
   position: sticky;
   top: 0;
@@ -45,31 +54,41 @@ hr {
 
 .navbar .container {
   display: flex;
-  justify-content: space-between;
-  gap: 30px;
   align-items: center;
+  justify-content: space-between;
+  gap: 40px;
 }
 
-#logo {
+.logo {
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
-#logo h2 {
+.logo h2 {
   font-size: 30px;
   letter-spacing: 1px;
-  color: #e7c3a3;
 }
 
-ul {
+.logo h2 a {
+  text-decoration: none;
+  color: #e7c3a3;
+  transition: color 0.3s ease;
+}
+
+.logo h2 a:hover {
+  color: #876139;
+}
+
+.navbar ul {
   list-style: none;
   display: flex;
   gap: 40px;
-  margin-left: auto;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
-ul li a {
+.navbar ul li a {
   text-decoration: none;
   color: #f8f3ed;
   font-size: 17px;
@@ -77,7 +96,7 @@ ul li a {
   position: relative;
 }
 
-ul li a::after {
+.navbar ul li a::after {
   content: "";
   position: absolute;
   left: 0;
@@ -85,15 +104,15 @@ ul li a::after {
   width: 0;
   height: 2px;
   background-color: #d9b99b;
-  transition: 0.3s;
+  transition: width 0.3s ease;
 }
 
-ul li a:hover::after {
+.navbar ul li a:hover {
+  color: inherit;
+}
+
+.navbar ul li a:hover::after {
   width: 100%;
-}
-
-ul li a:hover {
-  color: #d9b99b;
 }
 
 .nav-btn {
@@ -105,15 +124,14 @@ ul li a:hover {
   cursor: pointer;
   font-family: "Lora", serif;
   font-size: 16px;
-  transition: 0.3s;
+  transition: background-color 0.3s ease;
 }
 
 .nav-btn:hover {
   background-color: #f1d3b3;
 }
 
-.nav-btn:active,
-.hero-btn:active {
+.nav-btn:active {
   transform: scale(0.95);
 }
 
@@ -131,7 +149,13 @@ ul li a:hover {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.3s ease, background-color 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.theme-btn:hover {
+  box-shadow: 0 0 10px rgba(217, 185, 155, 0.5);
 }
 
 .theme-btn:active {
@@ -139,10 +163,13 @@ ul li a:hover {
 }
 
 /* both icons stacked */
-.theme-btn .icon {
+.theme-btn .moon,
+.theme-btn .sun {
   position: absolute;
   font-size: 18px;
-  transition: all 0.4s ease;
+  transition:
+    opacity 0.4s ease,
+    transform 0.4s ease;
 }
 
 /* default state: light mode = show moon */
@@ -159,16 +186,15 @@ ul li a:hover {
 /* HERO SECTION */
 
 .hero {
-  height: 90vh;
+  min-height: 90vh;
   background-image:
-    linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)),
+    linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.35)),
     url("images/hero-section.jpeg");
   background-size: cover;
   background-position: center;
   display: flex;
   align-items: center;
   color: white;
-  margin-top: -2px;
 }
 
 .hero .container {
@@ -202,11 +228,18 @@ ul li a:hover {
   color: #fff;
   font-size: 20px;
   text-decoration: none;
-  transition: 0.3s;
+  transition:
+    background-color 0.3s ease,
+    transform 0.3s ease;
 }
 
 .hero-btn:hover {
   background-color: #6b463f;
+  transform: translateY(-2px);
+}
+
+.hero-btn:active {
+  transform: scale(0.95);
 }
 
 /* ABOUT SECTION */
@@ -234,8 +267,9 @@ ul li a:hover {
   background-repeat: no-repeat;
   background-size: 400px;
   background-position: center;
-  opacity: 0.15;
+  opacity: 0.25;
   inset: 0;
+  pointer-events: none;
 }
 
 .text h2,
@@ -255,14 +289,14 @@ ul li a:hover {
   margin-bottom: 20px;
 }
 
-.image {
+.about-image {
   flex: 0.8;
 }
 
-.image img {
+.about-image img {
   width: 100%;
   border-radius: 20px;
-  max-height: 450px;
+  max-height: 400px;
   object-fit: cover;
 }
 
@@ -295,7 +329,10 @@ ul li a:hover {
   max-width: 220px;
   text-align: center;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.5s ease, color 0.5s ease, transform 0.3s ease;
+  transition:
+    background-color 0.5s ease,
+    color 0.5s ease,
+    transform 0.3s ease;
 }
 
 .card:hover {
@@ -317,7 +354,7 @@ ul li a:hover {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: 0.4s ease;
+  transition: transform 0.4s ease;
 }
 
 .card:hover img {
@@ -346,13 +383,20 @@ ul li a:hover {
 
 .feature-card {
   background-color: rgba(255, 255, 255, 0.4);
-  width: 300px;
+  max-width: 300px;
   padding: 30px;
   border-radius: 20px;
   text-align: center;
   backdrop-filter: blur(5px);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  transition: background-color 0.5s ease, color 0.5s ease, transform 0.3s ease;
+  transition:
+    background-color 0.5s ease,
+    color 0.5s ease,
+    transform 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-8px);
 }
 
 .feature-card h3 {
@@ -394,7 +438,10 @@ ul li a:hover {
   border-radius: 20px;
   text-align: center;
   backdrop-filter: blur(5px);
-  transition: background-color 0.5s ease, color 0.5s ease, transform 0.3s ease;
+  transition:
+    background-color 0.5s ease,
+    color 0.5s ease,
+    transform 0.3s ease;
 }
 
 .contact-card:hover {
@@ -434,6 +481,7 @@ ul li a:hover {
 }
 
 /* pop up */
+
 .popup {
   position: fixed;
   top: 50%;
@@ -447,9 +495,13 @@ ul li a:hover {
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
   opacity: 0;
   transform: translate(-50%, -50%) scale(0.9);
-  transition: 0.3s ease;
-  display: none;
+  visibility: hidden;
+  pointer-events: none;
   z-index: 1000;
+
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
 }
 
 .popup button {
@@ -465,6 +517,8 @@ ul li a:hover {
 .popup.show {
   opacity: 1;
   transform: translate(-50%, -50%) scale(1);
+  visibility: visible;
+  pointer-events: auto;
 }
 
 /* DARK MODE */
@@ -472,17 +526,6 @@ ul li a:hover {
 body.dark-mode {
   background-color: #16100d;
   color: #f8f3ed;
-}
-
-/* DARK MODE STATE */
-body.dark-mode .theme-btn .sun {
-  opacity: 1;
-  transform: rotate(0deg) scale(1);
-}
-
-body.dark-mode .theme-btn .moon {
-  opacity: 0;
-  transform: rotate(-90deg) scale(0.5);
 }
 
 /* navbar */
@@ -507,15 +550,6 @@ body.dark-mode .contact-card {
   background-color: #2b1d18;
   color: #f8f3ed;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-}
-
-/* headings */
-
-body.dark-mode .about,
-body.dark-mode .menu,
-body.dark-mode .features,
-body.dark-mode .contact {
-  color: #f8f3ed;
 }
 
 /* buttons */
@@ -546,10 +580,20 @@ body.dark-mode hr {
   background-color: #5c463d;
 }
 
+body.dark-mode .theme-btn .sun {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+}
 
-/* Media Queries */
+body.dark-mode .theme-btn .moon {
+  opacity: 0;
+  transform: rotate(-90deg) scale(0.5);
+}
 
-/* TABLET DEVICES */
+
+/* MEDIA QUERIES */
+
+/* Tablet Devices */
 
 @media (max-width: 992px) {
   .hero .container,
@@ -566,7 +610,7 @@ body.dark-mode hr {
     font-size: 20px;
   }
 
-  .image img {
+  .about-image img {
     max-width: 400px;
   }
 
@@ -576,17 +620,16 @@ body.dark-mode hr {
     gap: 20px;
   }
 
-  ul {
+  .navbar ul {
     gap: 20px;
-    margin-left: 0;
   }
 }
 
-/* MOBILE DEVICES*/
+/* Mobile Devices*/
 
 @media (max-width: 768px) {
   .hero {
-    height: auto;
+    min-height: auto;
     padding: 100px 0;
   }
 
@@ -613,12 +656,11 @@ body.dark-mode hr {
     flex-direction: column;
   }
 
-  ul {
+  .navbar ul {
     flex-wrap: wrap;
     justify-content: center;
     gap: 12px;
   }
-
   .card,
   .feature-card,
   .contact-card {
@@ -630,13 +672,12 @@ body.dark-mode hr {
     width: 90%;
   }
 
-  .theme-btn,
   .nav-btn {
     font-size: 15px;
   }
 }
 
-/* SMALL MOBILE DEVICES */
+/* Small Mobile Devices */
 
 @media (max-width: 480px) {
   .content h1 {
@@ -648,11 +689,11 @@ body.dark-mode hr {
     font-size: 16px;
   }
 
-  ul {
+  .navbar ul {
     gap: 15px;
   }
 
-  ul li a {
+  .navbar ul li a {
     font-size: 15px;
   }
 

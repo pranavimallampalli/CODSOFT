@@ -1,63 +1,60 @@
-/* DOM ELEMENTS */
+// ELEMENTS
+
 const orderBtn = document.querySelector(".nav-btn");
-const popup = document.querySelector("#popup");
-const closePopup = document.querySelector("#close-popup");
-
-if (orderBtn && popup && closePopup) {
-  orderBtn.addEventListener("click", () => {
-    popup.style.display = "block";
-    setTimeout(() => popup.classList.add("show"), 10);
-  });
-
-  closePopup.addEventListener("click", () => {
-    popup.classList.remove("show");
-    setTimeout(() => (popup.style.display = "none"), 300);
-  });
-}
-
+const popup = document.getElementById("popup");
+const closePopup = document.getElementById("close-popup");
 const themeBtn = document.querySelector(".theme-btn");
+const revealElements = document.querySelectorAll(".reveal");
 
+// POPUP
 
-// (Order Button) 
+const openPopup = () => {
+  popup?.classList.add("show");
+};
 
-// Show popup
-orderBtn.addEventListener("click", () => {
-  popup.style.display = "block";
-  setTimeout(() => {
-    popup.classList.add("show");
-  }, 10);
-});
+const closePopupHandler = () => {
+  popup?.classList.remove("show");
+};
 
-// Hide popup
-closePopup.addEventListener("click", () => {
-  popup.classList.remove("show");
+orderBtn?.addEventListener("click", openPopup);
+closePopup?.addEventListener("click", closePopupHandler);
 
-  setTimeout(() => {
-    popup.style.display = "none";
-  }, 300);
-});
+// DARK MODE
 
-// SCROLL REVEAL ANIMATION
-function revealSections() {
-  reveals.forEach((element) => {
-    const revealTop = element.getBoundingClientRect().top;
-
-    if (revealTop < window.innerHeight - 100) {
-      element.classList.add("active");
-    }
-  });
+// Load saved theme on page refresh
+if (localStorage.getItem("theme") === "dark") {
+  document.body.classList.add("dark-mode");
 }
 
-window.addEventListener("scroll", revealSections);
-window.addEventListener("load", revealSections);
-
-// Run immediately
-revealSections();
-
-
-// DARK MODE TOGGLE
-
-// Toggle dark/light mode
-themeBtn.addEventListener("click", () => {
+// Toggle theme and save preference
+const toggleTheme = () => {
   document.body.classList.toggle("dark-mode");
+
+  if (document.body.classList.contains("dark-mode")) {
+    localStorage.setItem("theme", "dark");
+  } else {
+    localStorage.setItem("theme", "light");
+  }
+};
+
+themeBtn?.addEventListener("click", toggleTheme);
+
+// SCROLL REVEAL
+
+const revealObserver = new IntersectionObserver(
+  (entries, observer) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("active");
+        observer.unobserve(entry.target);
+      }
+    });
+  },
+  {
+    threshold: 0.15,
+  }
+);
+
+revealElements.forEach((element) => {
+  revealObserver.observe(element);
 });
